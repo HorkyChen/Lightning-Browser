@@ -6,6 +6,7 @@
     <string name="action_history">历史记录</string>
     <string name="action_bookmarks">书签列表</string>
     <string name="action_add_bookmark">添加书签</string>
+    <string name="action_add_to_homescreen">添加到首屏</string>
     <string name="action_copy">复制链接</string>
     <string name="action_forward">前进</string>
     <string name="settings">浏览器设置</string>

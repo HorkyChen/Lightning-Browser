@@ -4,6 +4,7 @@
 package acr.browser.lightning.constant;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -49,7 +50,8 @@ public class StartPage extends AsyncTask<Void, Void, Void> {
             + "border-radius: 2px;}</style><body> <div class=\"outer\"><div class=\"middle\"><div class=\"inner\"><img class=\"smaller\" src=\"";
 
     private static final String MIDDLE = "\" ></br></br><form onsubmit=\"return search()\" class=\"search_bar\" autocomplete=\"off\">"
-            + "<input type=\"submit\" id=\"search_submit\" value=\"Search\" ><span><input class=\"search\" type=\"text\" value=\"\" id=\"search_input\" >"
+            + "<input type=\"submit\" id=\"search_submit\" value=\"";
+    private static final String MIDDLE2 ="\" ><span><input class=\"search\" type=\"text\" value=\"\" id=\"search_input\" >"
             + "</span></form></br></br></div></div></div><script type=\"text/javascript\">function search(){if(document.getElementById(\"search_input\").value != \"\"){window.location.href = \"";
 
     private static final String END = "\" + document.getElementById(\"search_input\").value;document.getElementById(\"search_input\").value = \"\";}return false;}</script></body></html>";
@@ -169,8 +171,12 @@ public class StartPage extends AsyncTask<Void, Void, Void> {
 
         }
 
+        String search_hint = BrowserApp.getContext().getResources().getString(R.string.search_hint);
+
         homepageBuilder.append(icon);
         homepageBuilder.append(MIDDLE);
+        homepageBuilder.append(search_hint);
+        homepageBuilder.append(MIDDLE2);
         homepageBuilder.append(searchUrl);
         homepageBuilder.append(END);
 

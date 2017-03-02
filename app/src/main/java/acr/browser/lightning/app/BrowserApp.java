@@ -31,6 +31,7 @@ public class BrowserApp extends Application {
     private static AppComponent mAppComponent;
     private static final Executor mIOThread = Executors.newSingleThreadExecutor();
     private static final Executor mTaskThread = Executors.newCachedThreadPool();
+    private static Context mContext;
 
     @Inject Bus mBus;
     @Inject PreferenceManager mPreferenceManager;
@@ -38,6 +39,9 @@ public class BrowserApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mContext = getApplicationContext();
+
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectAll()
@@ -122,6 +126,10 @@ public class BrowserApp extends Application {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("URL", string);
         clipboard.setPrimaryClip(clip);
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 
 }
