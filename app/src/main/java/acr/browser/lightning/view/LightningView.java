@@ -26,11 +26,11 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.WebSettings;
-import android.webkit.WebSettings.LayoutAlgorithm;
-import android.webkit.WebSettings.PluginState;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.CookieManager;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
+import com.tencent.smtt.sdk.WebSettings.PluginState;
+import com.tencent.smtt.sdk.WebView;
 
 import com.squareup.otto.Bus;
 
@@ -312,7 +312,7 @@ public class LightningView {
             settings.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
             if (API >= android.os.Build.VERSION_CODES.KITKAT) {
                 try {
-                    settings.setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
+                    settings.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
                 } catch (Exception e) {
                     // This shouldn't be necessary, but there are a number
                     // of KitKat devices that crash trying to set this
@@ -378,12 +378,12 @@ public class LightningView {
         if (API > Build.VERSION_CODES.JELLY_BEAN) {
             settings.setMediaPlaybackRequiresUserGesture(true);
         }
-        if (API >= Build.VERSION_CODES.LOLLIPOP && !mIsIncognitoTab) {
-            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
-        } else if (API >= Build.VERSION_CODES.LOLLIPOP) {
-            // We're in Incognito mode, reject
-            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        }
+//        if (API >= Build.VERSION_CODES.LOLLIPOP && !mIsIncognitoTab) {
+//             //settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+//        } else if (API >= Build.VERSION_CODES.LOLLIPOP) {
+//            // We're in Incognito mode, reject
+//            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+//        }
         if (!mIsIncognitoTab) {
             settings.setDomStorageEnabled(true);
             settings.setAppCacheEnabled(true);

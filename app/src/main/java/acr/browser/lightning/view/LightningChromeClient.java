@@ -14,10 +14,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.GeolocationPermissions;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
+import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
 
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;
@@ -90,7 +91,7 @@ class LightningChromeClient extends WebChromeClient {
 
     @Override
     public void onGeolocationPermissionsShowPrompt(@NonNull final String origin,
-                                                   @NonNull final GeolocationPermissions.Callback callback) {
+                                                   @NonNull final GeolocationPermissionsCallback callback) {
         PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(mActivity, PERMISSIONS, new PermissionsResultAction() {
             @Override
             public void onGranted() {

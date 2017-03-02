@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.WebView;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.otto.Bus;
@@ -23,6 +23,9 @@ import acr.browser.lightning.BuildConfig;
 import acr.browser.lightning.preference.PreferenceManager;
 import acr.browser.lightning.utils.FileUtils;
 import acr.browser.lightning.utils.MemoryLeakUtils;
+import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsListener;
+import com.tencent.smtt.sdk.TbsDownloader;
 
 public class BrowserApp extends Application {
 
@@ -41,6 +44,8 @@ public class BrowserApp extends Application {
         super.onCreate();
 
         mContext = getApplicationContext();
+
+        TbsDownloader.needDownload(mContext, true);
 
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -88,6 +93,35 @@ public class BrowserApp extends Application {
                 MemoryLeakUtils.clearNextServedView(activity, BrowserApp.this);
             }
         });
+
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                Log.e("app", " onViewInitFinished is " + arg0);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+            }
+        };
+        QbSdk.setTbsListener(new TbsListener() {
+            @Override
+            public void onDownloadFinish(int i) {
+                Log.d("app","onDownloadFinish");
+            }
+
+            @Override
+            public void onInstallFinish(int i) {
+                Log.d("app","onInstallFinish");
+            }
+
+            @Override
+            public void onDownloadProgress(int i) {
+                Log.d("app","onDownloadProgress:"+i);
+            }
+        });
+
+        QbSdk.initX5Environment(mContext,  cb);
     }
 
     @NonNull

@@ -14,7 +14,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.webkit.WebView;
+import com.tencent.smtt.sdk.WebView;
 
 import javax.inject.Inject;
 

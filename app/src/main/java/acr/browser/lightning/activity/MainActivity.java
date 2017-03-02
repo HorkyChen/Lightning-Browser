@@ -5,8 +5,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Menu;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
+import com.tencent.smtt.sdk.CookieManager;
+import com.tencent.smtt.sdk.CookieSyncManager;
 
 import acr.browser.lightning.R;
 import com.anthonycr.bonsai.Action;

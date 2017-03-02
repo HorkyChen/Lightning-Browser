@@ -9,7 +9,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.webkit.DownloadListener;
+import com.tencent.smtt.sdk.DownloadListener;
 import android.webkit.URLUtil;
 
 import acr.browser.lightning.R;
